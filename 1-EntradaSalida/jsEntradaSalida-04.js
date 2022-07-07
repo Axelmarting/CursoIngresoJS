@@ -8,7 +8,7 @@ function mostrar()
 
 	nombreIngresado = prompt("Ingrese su nombre");
 
-	//Se da vuelta para mostrar datos en el cuadro de texto
+	//Se da vuelta para mostrar datos en el cuadro de texto, asi mostras el dato
 	document.getElementById("txtIdNombre").value = nombreIngresado;
 }
 

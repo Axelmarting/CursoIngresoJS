@@ -7,7 +7,7 @@ function mostrar()
 
 	//nombreIngresado=txtIdNombre.value;
 
-	//El txtIdNombre se saca desde click derecho inspeccionar
+	//El txtIdNombre se saca desde click derecho inspeccionar, asi tomas el dato
 	nombreIngresado = document.getElementById("txtIdNombre").value;
 
 	alert(nombreIngresado);
