@@ -14,12 +14,9 @@ function mostrar()
     let suma;
     let resta;
 
-
     numero1 = prompt("Ingrese un numero entero");
-    numero1 = parseInt(numero1);
 
-    numero2 = prompt("Ingrese otro numero entero");
-    numero2 = parseInt(numero2);
+    numero2 = prompt("Ingrese otro numero entero"); 
 
     suma = numero1 + numero2;
     resta = numero1 - numero2;
@@ -28,6 +25,9 @@ function mostrar()
         mensaje= suma;
     }
     else{
+        numero1 = parseInt(numero1);
+        numero2 = parseInt(numero2);
+
         if(numero1 > numero2){
             mensaje= resta;
         }

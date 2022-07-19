@@ -10,5 +10,72 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  */
 function CalcularPrecio () 
 {
- 	
+ 	let cantidadLamparas;
+    let marca;
+    let precioLamparas = 35;
+    let cantidadXPrecio;
+    let descuento;
+    let porcentaje = 0;
+    let operacionPorcentaje;
+    let ingresosBrutos;
+
+    cantidadLamparas = parseInt(document.getElementById("txtIdCantidad").value);
+
+    marca = document.getElementById("Marca").value;
+
+    cantidadXPrecio = cantidadLamparas * precioLamparas;
+
+    if(cantidadLamparas >= 6){
+        porcentaje = 50;   
+    }
+    else{
+        if(cantidadLamparas == 5){
+            if(marca == "ArgentinaLuz"){
+                porcentaje = 40;
+            }
+            else{
+                porcentaje = 30; 
+            }  
+        }
+        else{
+            if(cantidadLamparas == 4){
+                if(marca == "ArgentinaLuz" || marca == "FelipeLamparas"){
+                    porcentaje = 25;
+                }
+                else{
+                    porcentaje = 20;
+                }
+            }
+            else{
+                if(cantidadLamparas == 3){
+                    if(marca == "ArgentinaLuz"){
+                        porcentaje = 15;
+                    }
+                    else{
+                        if(marca == "FelipeLamparas"){
+                            porcentaje = 10;
+                        }
+                        else{
+                            porcentaje = 5;
+                        }
+                    }
+                }
+            }
+        }   
+    }
+
+    operacionPorcentaje = cantidadXPrecio * porcentaje / 100;
+    descuento = cantidadXPrecio - operacionPorcentaje;
+    document.getElementById("txtIdprecioDescuento").value = descuento;
+
+    if(descuento > 120){
+        operacionPorcentaje = descuento * 10 / 100;
+        ingresosBrutos = descuento + operacionPorcentaje;
+        alert("IIBB usted pago " + operacionPorcentaje);
+        document.getElementById("txtIdprecioDescuento").value = ingresosBrutos;
+    }
+
+
 }
+//txtIdCantidad
+//txtIdprecioDescuento
