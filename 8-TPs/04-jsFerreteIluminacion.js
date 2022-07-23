@@ -10,7 +10,82 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  */
 function CalcularPrecio () 
 {
- 	let cantidadLamparas;
+    let cantidadLamparas;
+    let marca;
+    let precioLamparas = 35;
+    let descuento = 0;
+    let porcentaje;
+    let cantidadXPrecio;
+    let precioFinal;
+    let ingresosBrutos;
+
+    cantidadLamparas = parseInt(document.getElementById("txtIdCantidad").value);
+
+    marca = document.getElementById("Marca").value;
+
+    cantidadXPrecio = cantidadLamparas * precioLamparas;
+
+    switch(cantidadLamparas){
+        case 5:
+            if(marca == "ArgentinaLuz"){
+                descuento = 40;
+            }
+            else{
+                descuento = 30;
+            }
+            break;
+        case 4: 
+            if(marca == "ArgentinaLuz" || marca == "FelipeLamparas"){
+                descuento = 25;
+            }
+            else{
+                descuento = 20;
+            }
+            break;
+        case 3:
+            if(marca == "ArgentinaLuz"){
+                descuento = 15;
+            }
+            else{
+                if(marca == "FelipeLamparas"){
+                    descuento = 10;
+                }
+                else{
+                    descuento = 5;
+                }
+            }
+            break;
+        case 2:
+        case 1:
+            descuento = 0;
+            break;
+
+        default:
+            descuento = 50;
+            break;
+
+    }
+    
+    porcentaje = cantidadXPrecio * descuento / 100;
+    precioFinal = cantidadXPrecio - porcentaje;
+
+    document.getElementById("txtIdprecioDescuento").value = precioFinal;
+
+    if(precioFinal > 120){
+        porcentaje = precioFinal * 10 / 100;
+        ingresosBrutos = precioFinal + porcentaje;
+        alert("IIBB usted pago " + porcentaje);
+        document.getElementById("txtIdprecioDescuento").value = ingresosBrutos;
+    }
+
+
+}
+//txtIdCantidad
+//txtIdprecioDescuento
+
+/*	TP4 IF/IF
+
+    let cantidadLamparas;
     let marca;
     let precioLamparas = 35;
     let cantidadXPrecio;
@@ -75,7 +150,221 @@ function CalcularPrecio ()
         document.getElementById("txtIdprecioDescuento").value = ingresosBrutos;
     }
 
+*/ //----------------------------------------------------------------------
 
-}
-//txtIdCantidad
-//txtIdprecioDescuento
+/* TP4 SWITCH/SWITCH (RESUELTO RARO PERO FUNCIONAL)
+
+    let cantidadLamparas;
+    let marca;
+    let precioLamparas = 35;
+    let descuento = 0;
+    let porcentaje;
+    let cantidadXPrecio;
+    let precioFinal;
+    let ingresosBrutos;
+
+    cantidadLamparas = parseInt(document.getElementById("txtIdCantidad").value);
+
+    marca = document.getElementById("Marca").value;
+
+    cantidadXPrecio = cantidadLamparas * precioLamparas;
+
+    switch(true){
+        case cantidadLamparas >= 6:
+            descuento = 50;
+            break;
+
+        case cantidadLamparas == 5 && marca == "ArgentinaLuz":
+            descuento = 40;
+            break;
+
+        case cantidadLamparas == 5 && marca != "ArgentinaLuz":
+            descuento = 30;
+            break;
+
+        case cantidadLamparas == 4 && marca == "ArgentinaLuz":
+        case cantidadLamparas == 4 && marca == "FelipeLamparas":
+            descuento = 25;
+            break;
+
+        case cantidadLamparas == 4 && marca != "ArgentinaLuz" && marca != "FelipeLamparas":
+            descuento = 20;
+            break;
+            
+        case cantidadLamparas == 3 && marca == "ArgentinaLuz":
+            descuento = 15;
+            break;
+
+        case cantidadLamparas == 3 && marca == "FelipeLamparas":
+            descuento = 10;
+            break;
+
+        case cantidadLamparas == 3 && marca != "ArgentinaLuz" && marca != "FelipeLamparas":
+            descuento = 5;
+            break;
+    }
+    porcentaje = cantidadXPrecio * descuento / 100;
+    precioFinal = cantidadXPrecio - porcentaje;
+
+    document.getElementById("txtIdprecioDescuento").value = precioFinal;
+
+    if(precioFinal > 120){
+        porcentaje = precioFinal * 10 / 100;
+        ingresosBrutos = precioFinal + porcentaje;
+        alert("IIBB usted pago " + porcentaje);
+        document.getElementById("txtIdprecioDescuento").value = ingresosBrutos;
+    }
+    *///--------------------------------------------------------------------------
+   
+    /*  TP4 SWITCH\SWITCH (PERFECTO)
+
+    let cantidadLamparas;
+    let marca;
+    let precioLamparas = 35;
+    let descuento = 0;
+    let porcentaje;
+    let cantidadXPrecio;
+    let precioFinal;
+    let ingresosBrutos;
+
+    cantidadLamparas = parseInt(document.getElementById("txtIdCantidad").value);
+
+    marca = document.getElementById("Marca").value;
+
+    cantidadXPrecio = cantidadLamparas * precioLamparas;
+
+    switch(cantidadLamparas){
+        case 5:
+            switch(marca){
+                case "ArgentinaLuz":
+                    descuento = 40;
+                    break;
+
+                default:
+                    descuento = 30;
+                    break;
+            } 
+        case 4:
+            switch(marca){
+                case "ArgentinaLuz":
+                case "FelipeLamparas":
+                    descuento = 25;
+                    break;
+
+                default:
+                    descuento = 20;
+                    break;
+            }
+        case 3:
+            switch(marca){
+                case "ArgentinaLuz":
+                    descuento = 15;
+                    break;
+
+                case "FelipeLamparas":
+                    descuento = 10;
+                    break;
+
+                default:
+                    descuento = 5;
+                    break;
+            }
+        case 2:
+        case 1:
+            descuento = 0;
+            break;
+
+        default:
+            descuento = 50;
+            break;
+    }
+    porcentaje = cantidadXPrecio * descuento / 100;
+    precioFinal = cantidadXPrecio - porcentaje;
+
+    document.getElementById("txtIdprecioDescuento").value = precioFinal;
+
+    if(precioFinal > 120){
+        porcentaje = precioFinal * 10 / 100;
+        ingresosBrutos = precioFinal + porcentaje;
+        alert("IIBB usted pago " + porcentaje);
+        document.getElementById("txtIdprecioDescuento").value = ingresosBrutos;
+    }*///--------------------------------------------------------------------
+    
+    /*   TP4 IF/SWITCH
+    let cantidadLamparas;
+    let marca;
+    let precioLamparas = 35;
+    let descuento = 0;
+    let porcentaje;
+    let cantidadXPrecio;
+    let precioFinal;
+    let ingresosBrutos;
+
+    cantidadLamparas = parseInt(document.getElementById("txtIdCantidad").value);
+
+    marca = document.getElementById("Marca").value;
+
+    cantidadXPrecio = cantidadLamparas * precioLamparas;
+
+    if(cantidadLamparas == 5){
+            switch(marca){
+                case "ArgentinaLuz":
+                    descuento = 40;
+                    break;
+
+                default:
+                    descuento = 30;
+                    break;
+            } 
+    }
+    else{
+        if(cantidadLamparas == 4){
+            switch(marca){
+                case "ArgentinaLuz":
+                case "FelipeLamparas":
+                    descuento = 25;
+                    break;
+
+                default:
+                    descuento = 20;
+                    break;
+            }
+        }
+        else{
+            if(cantidadLamparas == 3){
+                switch(marca){
+                    case "ArgentinaLuz":
+                        descuento = 15;
+                        break;
+    
+                    case "FelipeLamparas":
+                        descuento = 10;
+                        break;
+    
+                    default:
+                        descuento = 5;
+                        break;
+                }
+            }
+            else{
+                if(cantidadLamparas <= 2){
+                    descuento = 0;
+                }
+                else{
+                    descuento = 50;
+                }
+            }
+        }
+    }
+    
+    porcentaje = cantidadXPrecio * descuento / 100;
+    precioFinal = cantidadXPrecio - porcentaje;
+
+    document.getElementById("txtIdprecioDescuento").value = precioFinal;
+
+    if(precioFinal > 120){
+        porcentaje = precioFinal * 10 / 100;
+        ingresosBrutos = precioFinal + porcentaje;
+        alert("IIBB usted pago " + porcentaje);
+        document.getElementById("txtIdprecioDescuento").value = ingresosBrutos;
+    }*/
