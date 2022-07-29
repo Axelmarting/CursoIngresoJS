@@ -20,7 +20,7 @@ function mostrar()
     banderaDelPrimero = "Primer valor";
     
 
-    while(contadorAlumnos<3){
+    while(contadorAlumnos<5){
         notaIngresada = prompt("Ingrese nota entre 0 y 10");
         notaIngresada = parseInt(notaIngresada);
 
