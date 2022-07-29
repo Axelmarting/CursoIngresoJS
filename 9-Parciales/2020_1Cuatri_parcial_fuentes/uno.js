@@ -91,9 +91,13 @@ function mostrar()
 			if(cantidadUnidades > unidadesMax){
 				unidadesMax = cantidadUnidades;
 				tipoProductoUnidadesMax = tipoProducto;
-				acumuladorUnidadesProductoMax+= unidadesMax;
-				contadorUnidadesProductoMax++;
+				
 			}
+		}
+
+		if(tipoProducto == tipoProductoUnidadesMax){
+				acumuladorUnidadesProductoMax+= cantidadUnidades;
+				contadorUnidadesProductoMax++;
 		}
 
 		//aca empieza el C.
