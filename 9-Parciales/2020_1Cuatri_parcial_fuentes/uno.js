@@ -11,6 +11,147 @@ c) Cuántas unidades de jabones hay en total*/
 function mostrar()
 {
 	let contador5Productos=0;
+	let tipo;
+	let precio;
+	let cantidadUnidades;
+	let fabricantee;
+	let banderaDelPrimero;
+	let precioMin;
+	let fabricanteAlcoholMin;
+	let cantidadUnidadesMin;
+	let banderaDelSegundo;
+	let unidadesMax;
+	let tipoUnidadesMax;
+	let promedio;
+	let acumuladorUnidadesTipoMax=0;
+	let contadorUnidadesTipoMax=0;
+	let acumuladorJabones=0;
+
+	banderaDelPrimero =0;
+
+	banderaDelSegundo =0;
+
+	while(contador5Productos < 3){
+		tipo = prompt("Ingrese el tipo de produtcto. barbijo, jabon o alcohol");
+		tipo = tipo.toLowerCase();
+
+		while(tipo != "barbijo" && tipo != "jabon" && tipo != "alcohol"){
+			tipo = prompt("Error ingrese el tipo de produtcto. barbijo, jabon o alcohol");
+			tipo = tipo.toLowerCase();
+		}
+
+		precio = prompt("Ingrese precio entre 100 y 300");
+		precio = parseFloat(precio);
+
+		while(precio < 100 || precio > 300){
+			precio = prompt("Error ingrese precio entre 100 y 300");
+			precio = parseFloat(precio);
+		}
+
+		cantidadUnidades = prompt("Ingrese la cantidad de unidades. no puede ser 0 o negativo y no debe superar las 1000 unidades");
+		cantidadUnidades = parseInt(cantidadUnidades);
+
+		while(cantidadUnidades < 1 || cantidadUnidades > 1000){
+			cantidadUnidades = prompt("Error ingrese la cantidad de unidades. no puede ser 0 o negativo y no debe superar las 1000 unidades");
+			cantidadUnidades = parseInt(cantidadUnidades);
+		}
+
+		fabricantee = prompt("Ingrese el fabricante");
+
+		// Fin validaciones.
+
+		// A.
+		if(tipo == "alcohol"){
+			if(banderaDelPrimero == 0){
+				precioMin = precio;
+				fabricanteAlcoholMin = fabricantee;
+				cantidadUnidadesMin = cantidadUnidades;
+
+				banderaDelPrimero = 1;
+			}
+			else{
+				if(precio < precioMin){
+					precioMin = precio;
+					fabricanteAlcoholMin = fabricantee;
+					cantidadUnidadesMin = cantidadUnidades;
+				}
+			}
+		}
+
+		// B.
+		if(banderaDelSegundo == 0){
+			unidadesMax = cantidadUnidades;
+			tipoUnidadesMax = tipo;
+
+			banderaDelSegundo = 1;
+		}
+		else{
+			if(cantidadUnidades > unidadesMax){
+				unidadesMax = cantidadUnidades;
+				tipoUnidadesMax = tipo;
+			}
+		}
+
+		// C.
+		if(tipo == "jabon"){
+			acumuladorJabones += cantidadUnidades;
+		}
+
+
+		contador5Productos ++;
+	}
+	if(tipoUnidadesMax == tipoUnidadesMax){
+		acumuladorUnidadesTipoMax += unidadesMax;
+		contadorUnidadesTipoMax ++;
+	}
+
+	promedio =  acumuladorUnidadesTipoMax / contadorUnidadesTipoMax;
+
+	console.log("El mas barato de los alcohol tiene un precio de: " + precioMin + " , sus unidades son: " + cantidadUnidadesMin + " y su fabricante es: " + fabricanteAlcoholMin);
+	console.log("El promedio x compra del producto con mas unidades es: " + promedio + " y el producto es: " + tipoUnidadesMax);
+	console.log("La cantidade de unidadesd e jabones en total es de: " + acumuladorJabones);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*
+ let contador5Productos=0;
 	let tipoProducto;
 	let precioProducto;
 	let cantidadUnidades=0;
@@ -115,4 +256,4 @@ function mostrar()
 	console.log("Del mas barato de los alcohol, la cantidad de unidades es: " + unidadesAlcoholMin + " y el fabricante es: " + fabricanteAlcoholMin);
 	console.log("El tipo con mas unidades es: " + tipoProductoUnidadesMax + " y el promedio por compra es: " + promedio);
 	console.log("La cantidad de unidades de jabon es de: " + acumuladorJabones);
-}
+	*/

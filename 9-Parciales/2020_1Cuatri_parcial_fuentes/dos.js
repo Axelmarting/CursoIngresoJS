@@ -12,7 +12,115 @@ f) El tipo mas caro*/
 
 function mostrar()
 {
-  let respuesta;
+    let respuesta;
+    let tipo;
+    let cantidadBolsas;
+    let precio;
+    let descuento;
+    let precioBolsas;
+    let acumuladorPrecioBolsas=0;
+    let operacionDescuento;
+    let precioFinal;
+    let banderaDelPrimero;
+    let tipoUnidadesMax;
+    let unidadesMax;
+    let banderaDelSegundo;
+    let precioMax;
+    let tipoPrecioMax;
+
+    banderaDelSegundo = 0;
+
+    banderaDelPrimero =0;
+
+
+    respuesta = "si";
+
+    while(respuesta == "si"){
+      tipo = prompt("Ingrese el tipo.  arena, cal o cemento");
+      tipo = tipo.toLowerCase();
+
+      while(tipo != "arena" && tipo != "cal" && tipo != "cemento"){
+        tipo = prompt("Ingrese el tipo.  arena, cal o cemento");
+        tipo = tipo.toLowerCase();
+      }
+
+      cantidadBolsas = prompt("Ingrese la cantidad de bolsas.");
+      cantidadBolsas = parseInt(cantidadBolsas);
+
+      while(cantidadBolsas <1){
+        cantidadBolsas = prompt("Error ingrese la cantidad de bolsas. > 0");
+        cantidadBolsas = parseInt(cantidadBolsas);
+      }
+
+      precio = prompt("Ingrese el precio.");
+      precio = parseFloat(precio);
+
+      while(precio < 1){
+        precio = prompt("Error ingrese el precio. > 0");
+        precio = parseFloat(precio);
+      }
+      
+      if(cantidadBolsas > 10 && cantidadBolsas < 31){
+        descuento = 15;
+      }
+      else{
+        if(cantidadBolsas > 30){
+          descuento = 25;
+        }
+        else{
+          descuento = 0;
+        }
+      }
+
+      // Fin validaciones.
+
+      // A.
+      precioBolsas = cantidadBolsas * precio;
+      acumuladorPrecioBolsas += precioBolsas;
+
+      // C.
+      if(banderaDelPrimero == 0){
+        tipoUnidadesMax = tipo;
+        unidadesMax = cantidadBolsas;
+
+        banderaDelPrimero = 1;
+      }
+      else{
+        if(cantidadBolsas > unidadesMax){
+          tipoUnidadesMax = tipo;
+          unidadesMax = cantidadBolsas;
+        }
+      }
+
+      // D.
+      if(banderaDelSegundo == 0){
+        tipoPrecioMax = tipo;
+        precioMax = precio;
+
+        banderaDelSegundo = 1;
+      }
+      else{
+        if(precio > precioMax){
+          tipoPrecioMax = tipo;
+          precioMax = precio;
+        }
+      }
+
+
+      respuesta = prompt("Desea continuar?");
+    } 
+    operacionDescuento = acumuladorPrecioBolsas * descuento / 100;
+    precioFinal = acumuladorPrecioBolsas - operacionDescuento;
+    
+
+    console.log("El importe total a pagar sin descuento es de: " + acumuladorPrecioBolsas);
+    console.log("El precio final en el caso que tenga descuento es de: " + precioFinal);
+    console.log("El tipo con mas unidades es: " + tipoUnidadesMax);
+    console.log("El tipo mas caro es: " + tipoPrecioMax);
+}
+
+/*
+ let respuesta;
   let tipoProducto;
   let cantidadBolsas;
   let precioDeCadaBolsa;
@@ -119,5 +227,4 @@ function mostrar()
   console.log("El importe total a pagar con descuento (si corresponde) es de: " + descuentoTotal );
   console.log("El tipo de producto con mas cantidad de bolsas es de: " + tipoProductoCantidadBolsasMax);
   console.log("El tipo mas caro es " + tipoProductoPrecioMax + " con un precio por bolsa de " + precioMax);
-
-}
+*/

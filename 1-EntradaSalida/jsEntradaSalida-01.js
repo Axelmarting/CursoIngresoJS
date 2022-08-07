@@ -1,51 +1,123 @@
 /*
-Al presionar el  botón, 
-se debe mostrar un mensaje como el siguiente "Esto funciona de maravilla"*/
+3)Nos ingresan una cantidad indeterminada de vuelos,
+validando los datos ingresados:
+
+nombre del pasajero ,aerolínea ( “Aerolíneas
+Argentinas”, “JetSmart” o “FlyBondi”),destino(“Bariloche”, “Cataratas”, “Salta”)
+cantidad de horas de vuelo (entre 0 y 8).
+
+Informar:
+a) La aerolínea más elegida.
+b) El nombre del pasajero que más horas viajó.
+c) El promedio de horas de vuelo a Bariloche.
+*/
+
 function mostrar()
 {
-	let diametroMayor;
-	let diametroMenor;
-	let ladosMenores;
-	let ladosMayores;
-	let sumaCantidades;
-	let metrosVarillasPlastico;
-	let cmPapel;
-	let metrosPapel;
-	let metrosPapelX10;
-	let metrosVarillasX10;
+	let respuesta;
+	let nombre;
+	let aerolinea;
+	let destino;
+	let cantidadHorasVuelo;
+	let contadorArgentinas=0;
+	let contadorJetsmart=0;
+	let contadorFlybondi=0;
+	let aerolineaMasElegida;
+	let banderaDelPrimero;
+	let cantidadHorasMax;
+	let nombreCantidadHorasMax;
+	let acumuladorHorasBariloche=0;
+	let contadorBariloche=0;
+	let promedioHorasVueloABariloche;
+
+	banderaDelPrimero = 0;
+
+	respuesta = "si";
+
+	while(respuesta == "si"){
+		nombre = prompt("Ingrese nombre del pasajero");
+
+		aerolinea = prompt("Ingrese aerolinea. aerolineas argentinas, jetsmart o flybondi");
+		aerolinea = aerolinea.toLowerCase();
+
+		while(aerolinea != "aerolineas argentinas" && aerolinea != "jetsmart" && aerolinea != "flybondi"){
+			aerolinea = prompt("Error ingrese aerolinea. aerolineas argentinas, jetsmart o flybondi");
+			aerolinea = aerolinea.toLowerCase();
+		}
+
+		destino = prompt("Ingrese destino. bariloche, cataratas o salta");
+		destino = destino.toLowerCase();
+
+		while(destino != "bariloche" && destino != "cataratas" && destino != "salta"){
+			destino = prompt("Error ingrese destino. bariloche, cataratas o salta");
+			destino = destino.toLowerCase();
+		}
+
+		cantidadHorasVuelo = prompt("Ingrese la cantidad de horas de vuelo entre 0 y 8");
+		cantidadHorasVuelo = parseFloat(cantidadHorasVuelo);
+
+		while(cantidadHorasVuelo < 1 || cantidadHorasVuelo > 7){
+			cantidadHorasVuelo = prompt("Error ingrese la cantidad de horas de vuelo entre 0 y 8");
+			cantidadHorasVuelo = parseFloat(cantidadHorasVuelo);
+		}
+
+		// Fin validaciones.
+
+		// A.
+		switch(aerolinea){
+			case "aerolineas argentinas":
+				contadorArgentinas++;
+				break;
+			case "flybondi":
+				contadorFlybondi++;
+				break;
+			default:
+				contadorJetsmart++;
+				break;
+		}
+
+		// B.
+		if(banderaDelPrimero == 0){
+			nombreCantidadHorasMax = nombre;
+			cantidadHorasMax = cantidadHorasVuelo;
+
+			banderaDelPrimero = 1;
+		}
+		else{
+			if(cantidadHorasVuelo > cantidadHorasMax){
+				nombreCantidadHorasMax = nombre;
+				cantidadHorasMax = cantidadHorasVuelo;
+			}
+		}
+
+		// C.
+		if(destino == "bariloche"){
+			acumuladorHorasBariloche+= cantidadHorasVuelo;
+			contadorBariloche++;
+		}
 
 
-	diametroMayor = prompt("Ingrese cm del diametro mayor"); //4.5
-	diametroMayor = parseFloat(diametroMayor);
-
-	diametroMenor = prompt("Ingrese cm del diametro menor"); //3
-	diametroMenor = parseFloat(diametroMenor);
-
-	ladosMayores = prompt("Ingrese los cm de los lados mayores"); //3.5
-	ladosMayores = parseFloat(ladosMayores);
-
-	ladosMenores = prompt("Ingrese los cm de los lados menores");//2
-	ladosMenores = parseFloat(ladosMenores);
-
-	sumaCantidades = diametroMayor + diametroMenor + ladosMayores*2 + ladosMenores*2;
-
-	metrosVarillasPlastico = sumaCantidades / 100;
-	cmPapel = sumaCantidades * 1.10;
-	metrosPapel = cmPapel / 100;
-
-	metrosVarillasX10 = metrosVarillasPlastico * 10;
-	metrosPapelX10 = metrosPapel *10;
-
-	alert("La cantidad de varillas es de: " + metrosVarillasX10 + " mts y la cantidad de papel es de: " + metrosPapelX10 + " mts.");
 
 
 
-	
+		respuesta = prompt("Desea continuar?");
+	}
+	if(contadorArgentinas > contadorFlybondi && contadorArgentinas > contadorJetsmart){
+		aerolineaMasElegida = "aerolineas argentinas";
+	}
+	else{
+		if(contadorFlybondi > contadorJetsmart){
+			aerolineaMasElegida = "flybondi";
+		}
+		else{
+			aerolineaMasElegida = "jetsmart";
+		}
+	}
 
+	promedioHorasVueloABariloche = acumuladorHorasBariloche / contadorBariloche;
 
-
-
+	document.write("La aerolinea mas elegida es: " + aerolineaMasElegida + "<br>");
+	document.write("El nombre del pasajero que más horas viajó es: " + nombreCantidadHorasMax + ", con la siguiente cantidad de horas: " + cantidadHorasMax + "<br>");
+	document.write("El promedio de horas de vuelo a Bariloche es: " + promedioHorasVueloABariloche);
 }
-//cm / 100 = m
 
-// alert("Esto funciona de maravillaa");
